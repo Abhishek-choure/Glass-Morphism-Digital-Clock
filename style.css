@@ -1,0 +1,242 @@
+/* reset default spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+  /* dark night-blue background */
+  background: linear-gradient(135deg, #0a1330, #14245c);
+}
+
+/* ---------- background circles (blurred + slowly floating) ---------- */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(30px);
+  animation: float 10s ease-in-out infinite alternate;
+}
+
+.circle1 {
+  width: 380px;
+  height: 380px;
+  background: #2b3fd6;
+  top: 2%;
+  left: 8%;
+}
+
+.circle2 {
+  width: 320px;
+  height: 320px;
+  background: #5be3c1;
+  bottom: 2%;
+  right: 10%;
+  animation-delay: -4s;
+}
+
+.circle3 {
+  width: 170px;
+  height: 170px;
+  background: #ffb547;
+  top: 14%;
+  right: 24%;
+  animation-delay: -7s;
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to   { transform: translateY(35px); }
+}
+
+/* ---------- glass card ---------- */
+.container {
+  position: relative; /* so it stays above the circles */
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 45px 50px;
+  border-radius: 30px;
+
+  /* the glass morphism part */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.06));
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5); /* light shine on the top edge */
+}
+
+/* ---------- analog clock ---------- */
+.analog {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    inset 0 4px 18px rgba(255, 255, 255, 0.18),
+    0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* the 60 tick marks are created in script.js */
+.tick {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 50%;
+  margin-left: -1px;
+  transform-origin: bottom center;
+}
+
+.tick::before {
+  content: "";
+  display: block;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 2px;
+}
+
+.tick.big::before {
+  height: 13px;
+  background: white;
+}
+
+.num {
+  position: absolute;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.n12 { top: 24px;    left: 50%; transform: translateX(-50%); }
+.n6  { bottom: 24px; left: 50%; transform: translateX(-50%); }
+.n3  { right: 26px;  top: 50%;  transform: translateY(-50%); }
+.n9  { left: 26px;   top: 50%;  transform: translateY(-50%); }
+
+/* all hands start from the center and rotate from their bottom */
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  transform: translateX(-50%) rotate(0deg);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.hour {
+  width: 6px;
+  height: 55px;
+  background: white;
+}
+
+.minute {
+  width: 4px;
+  height: 82px;
+  background: white;
+}
+
+.second {
+  width: 2px;
+  height: 95px;
+  background: #ffb547;
+  box-shadow: 0 0 10px #ffb547; /* orange glow */
+}
+
+.center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background: #ffb547;
+  border: 3px solid white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- digital clock ---------- */
+.digital h1 {
+  font-size: 3.4rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums; /* all digits same width, so time doesn't shake */
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.digital p {
+  margin: 10px 0 24px;
+  opacity: 0.75;
+}
+
+button {
+  padding: 11px 26px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: white;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.32);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* link to the calendar page, looks like the button */
+.cal-link {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 11px 26px;
+  color: white;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 30px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.cal-link:hover {
+  background: rgba(255, 255, 255, 0.32);
+  transform: translateY(-2px);
+}
+
+/* ---------- mobile screens ---------- */
+@media (max-width: 650px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 25px;
+    gap: 28px;
+  }
+
+  .analog {
+    width: 200px;
+    height: 200px;
+  }
+
+  .digital h1 {
+    font-size: 2.3rem;
+  }
+
+  .cal-link {
+    margin: 10px 0 0 0;
+  }
+}

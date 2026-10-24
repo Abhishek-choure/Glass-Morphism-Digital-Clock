@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Calendar</title>
+  <link rel="stylesheet" href="calendar.css">
+</head>
+<body>
+
+  <!-- same colorful circles as the clock page -->
+  <div class="circle circle1"></div>
+  <div class="circle circle2"></div>
+  <div class="circle circle3"></div>
+
+  <div class="container">
+
+    <!-- LEFT SIDE: calendar -->
+    <div class="calendar-box">
+      <div class="top-bar">
+        <a href="index.html" class="link">&#8592; Clock</a>
+        <span id="liveTime">00:00:00</span>
+      </div>
+
+      <div class="month-bar">
+        <button id="prevBtn">&#8249;</button>
+        <h2 id="monthTitle">Month Year</h2>
+        <button id="nextBtn">&#8250;</button>
+      </div>
+
+      <div class="week-names">
+        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>
+        <span>Thu</span><span>Fri</span><span>Sat</span>
+      </div>
+
+      <!-- days are added here by calendar.js -->
+      <div class="days" id="days"></div>
+
+      <button id="todayBtn" class="small-btn">Go to Today</button>
+    </div>
+
+    <!-- RIGHT SIDE: details of the selected date -->
+    <div class="details-box">
+      <h2 id="selectedTitle">Select a date</h2>
+      <p id="summary" class="summary"></p>
+
+      <!-- form to add a new item -->
+      <form id="itemForm">
+        <input type="text" id="titleInput" placeholder="Add event, task or note..." maxlength="80" required>
+        <div class="row">
+          <input type="time" id="timeInput">
+          <select id="typeInput">
+            <option value="Event">Event</option>
+            <option value="Task">Task</option>
+            <option value="Note">Note</option>
+          </select>
+          <button type="submit" class="add-btn">Add</button>
+        </div>
+      </form>
+
+      <!-- saved items of this date -->
+      <ul id="itemList"></ul>
+      <p id="emptyMsg" class="empty">Nothing saved for this day yet.</p>
+    </div>
+
+  </div>
+
+  <script src="calendar.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glass Morphism Clock</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- colorful circles behind the glass, so the blur effect is visible -->
+  <div class="circle circle1"></div>
+  <div class="circle circle2"></div>
+  <div class="circle circle3"></div>
+
+  <div class="container">
+
+    <!-- analog clock -->
+    <div class="analog">
+      <span class="num n12">12</span>
+      <span class="num n3">3</span>
+      <span class="num n6">6</span>
+      <span class="num n9">9</span>
+
+      <div class="hand hour" id="hourHand"></div>
+      <div class="hand minute" id="minuteHand"></div>
+      <div class="hand second" id="secondHand"></div>
+      <div class="center-dot"></div>
+    </div>
+
+    <!-- digital clock -->
+    <div class="digital">
+      <h1 id="time">00:00:00</h1>
+      <p id="date">Loading date...</p>
+      <button id="toggleBtn">Switch to 24 Hour</button>
+      <a href="calendar.html" class="cal-link">Open Calendar</a>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
